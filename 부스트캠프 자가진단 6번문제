@@ -1,0 +1,47 @@
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
+public class practice {
+
+
+
+	public List<Integer> solution(int[] arr) {
+		
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		
+		for(int i = 0; i <arr.length;i++) {
+			if(!list.contains(arr[i]))
+				list.add(arr[i]);  //비교를 위해 배열 중복 제거
+		}
+		
+		List<Integer> lst2 = new ArrayList<>();  //arr을 List 값에 저장
+		for(int i = 0; i <arr.length;i++) {
+				lst2.add(arr[i]);
+		}
+		
+		List<Integer> lst3 = new ArrayList<>(); //중복된 값의 개수를 저장하기 위한 list
+		for(int i = 0 ; i<list.size();i++) {
+			if(Collections.frequency(lst2,list.get(i))!=1) { //중복된 값이 나 자신만 있을 경우 제외
+			lst3.add(Collections.frequency(lst2,list.get(i)));   //새로운 list lst3에  중복 개수 저장
+			}
+		}
+			
+		if(lst3.size()>0) return lst3; //중복된 값이 존재할 경우 return
+		else lst3 = new ArrayList<Integer>(); lst3.add(-1); return lst3; //없으면 [-1] 리턴
+		
+		
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+	int arr[] = {1,2,3,3,3,3,4,4};//{1,2,3};//{3,2,4,4,2,5,2,5,5};
+	practice p = new practice();
+	System.out.print(p.solution(arr));
+	}
+		
+	
+
+
+}
+
+
